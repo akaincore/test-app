@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'UserController@index')->name('users.index');
+    Route::group(['prefix' => 'transfers', 'as' => 'transfers.'], function () {
+        Route::get('/create', function () {
+            return view('transfers.create');
+        })->name('create');
+        Route::post('/', 'TransferController@store')->name('store');
+    });
+});
