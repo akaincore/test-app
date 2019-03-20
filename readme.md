@@ -19,6 +19,7 @@
 * create config file with `cp .env.example .env`
 * setup database connection at .env
 * install dependencies with `composer install`
+* make storage dir writable if it does not
 * run `php artisan key:generate`
 * run `php artisan migrate` to run migrations
 * run `php artisan db:seed` to seed database with test data
@@ -29,9 +30,10 @@
 ## Setup with docker
 ### default containers settings:
 * nginx exposes 80 port to 8080 local one
+* mysql host:port for .env is mysql:3306
+* mysql container exposes port 5306 
 * mysql user/password root/123456
 * mysql files stored at local directory /var/lib/mysql
-* nginx exposes 3306 port to 5306 local one
 
 ### Docker setup commands
 * create config file with `cp .env.example .env`
@@ -40,6 +42,7 @@
 * run at ./docker directory: `sudo docker-compose up` to start containers
 * `sudo docker ps` to list running containers and get containers names
 * `sudo docker exec -w /src -it docker_php_1 composer install` to install dependencies(docker_php_1 is php-fpm container name retrieved from docker ps)
+* make storage dir writable if it does not
 * `sudo docker exec -it docker_php_1 php /src/artisan key:generate` to generate application key
 * `sudo docker exec -it docker_php_1 php /src/artisan migrate` to run migrations
 * `sudo docker exec -it docker_php_1 php /src/artisan db:seed` to seed database
