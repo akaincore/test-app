@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
     web:
         restart: always
@@ -37,9 +37,6 @@ services:
             MYSQL_USER: root
             MYSQL_PASSWORD: 123456
             MYSQL_ROOT_PASSWORD: 123456
-        labels:
-          - traefik.enable=false
-
 volumes:
     mysql-data:
 
